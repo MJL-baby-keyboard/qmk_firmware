@@ -892,6 +892,14 @@ ifeq ($(strip $(BLUETOOTH_ENABLE)), yes)
         SRC += $(DRIVER_PATH)/bluetooth/bluetooth.c
         SRC += $(DRIVER_PATH)/bluetooth/rn42.c
     endif
+        ifeq ($(strip $(BLUETOOTH_DRIVER)), bhq)
+        NO_USB_STARTUP_CHECK = yes
+        COMMON_VPATH += $(DRIVER_PATH)/bluetooth/bhq
+        SRC += $(DRIVER_PATH)/bluetooth/bluetooth.c
+        SRC += $(DRIVER_PATH)/bluetooth/bhq/bhq.c
+        SRC += $(DRIVER_PATH)/bluetooth/bhq/bluetooth_bhq.c
+        SRC += $(DRIVER_PATH)/bluetooth/bhq/report_buffer.c
+    endif
 endif
 
 ENCODER_ENABLE ?= no
